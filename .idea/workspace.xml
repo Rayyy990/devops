@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e324671e-b622-4446-bb35-886650d6a109" name="Changes" comment="First commit, adding initial files.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/napier/devops/App.java" afterDir="false" />
+    <list default="true" id="e324671e-b622-4446-bb35-886650d6a109" name="Changes" comment="Added message">
+      <changelist_data name="h" email="" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +24,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="h" />
         <option value="Htet Arkar Saw Naung &lt;40794503@live.napier.ac.uk&gt;" />
         <option value="Htet Arkar Saw Naung &lt;arkarphyo99012@gmail.com&gt;" />
       </list>
@@ -40,6 +43,9 @@
     "accountId": "c9f31e5d-47cd-4241-93e2-20d34c847e56"
   }
 }]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/napier/devops/App.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
   <component name="KubernetesApiProvider"><![CDATA[{
   "isMigrated": true
@@ -55,6 +61,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.App.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
@@ -65,7 +72,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "E:/devOps/DevOps/src/main/java/com/napier/sem/Main.java",
-    "settings.editor.selected.configurable": "MavenSettings",
+    "settings.editor.selected.configurable": "Docker",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -88,7 +95,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1757788849784</updated>
-      <workItem from="1757788850833" duration="1962000" />
+      <workItem from="1757788850833" duration="3348000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, adding initial files.">
       <option name="closed" value="true" />
@@ -98,7 +105,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757790541401</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added message">
+      <option name="closed" value="true" />
+      <created>1757790909131</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1757790909131</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,7 +121,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit, adding initial files." />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit, adding initial files." />
+    <MESSAGE value="Added message" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added message" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
