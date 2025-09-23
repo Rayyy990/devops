@@ -1,1 +1,1 @@
-hiii
+hiiigit add <filename>
