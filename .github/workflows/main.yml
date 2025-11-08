@@ -74,7 +74,7 @@ jobs:
           verbose: true
           slug: Rayyy990/devops
 
-    build:
+  build:
     name: Build and Start Using docker-compose
     runs-on: ubuntu-latest
     steps:
