@@ -13,3 +13,5 @@ services:
       MYSQL_DATABASE: employees
       MYSQL_ROOT_HOST: "%"
     restart: always
+    ports:
+      - "33060:3306"

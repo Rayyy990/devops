@@ -1,4 +1,4 @@
-FROM openjdk:latest
-COPY ./target/devops-0.1.0.6-SNAPSHOT-jar-with-dependencies.jar /tmp
+FROM eclipse-temurin:21-jdk
+COPY ./target/seMethods.jar /tmp
 WORKDIR /tmp
-ENTRYPOINT ["java", "-jar", "devops-0.1.0.6-SNAPSHOT-jar-with-dependencies.jar"]
+ENTRYPOINT ["java", "-jar", "seMethods.jar", "db:3306", "10000"]
