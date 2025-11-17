@@ -92,14 +92,14 @@ public class App {
                             "FROM employees, salaries, titles, departments, dept_emp, dept_manager " +
                             "WHERE employees.emp_no = salaries.emp_no " +
                             "AND salaries.to_date = '9999-01-01' " +
-                            "AND titles.emp_no = employees.emp_no " +
-                            "AND titles.to_date = '9999-01-01' " +
+                            "AND emp.emp_no = employees.emp_no " +
+                            "AND emp.to_date = '9999-01-01' " +
                             "AND dept_emp.emp_no = employees.emp_no "+
                             "AND dept_emp.to_date = '9999-01-01' " +
                             "AND departments.dept_no = dept_emp.dept_no " +
                             "AND dept_manager.dept_no = dept_emp.dept_no " +
                             "AND dept_manager.to_date = '9999-01-01' "+
-                            "AND titles.title = 'Manager' ";
+                            "AND emp.title = 'Manager' ";
 
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Employee> employees = new ArrayList<>();
@@ -318,7 +318,7 @@ public class App {
         App app = new App();
 
         if (args.length < 1) {
-            connect("localhost:33060", 0);
+            connect("localhost:3306", 0);
         } else {
             connect(args[0], Integer.parseInt(args[1]));
         }
