@@ -1,32 +1,19 @@
 package com.napier.sem;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-@SpringBootApplication
-@RestController
-@CrossOrigin(origins = "*")
 public class App {
 
     /**
      * Connection to MySQL database.
      */
-    private static Connection con = null;
+    private Connection con = null;
 
     /**
      * Connect to the MySQL database.
      */
-    public static void connect(String location, int delay) {
+    public void connect(String location, int delay) {
         try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -66,7 +53,7 @@ public class App {
     /**
      * Disconnect from the MySQL database.
      */
-    public static void disconnect() {
+    public void disconnect() {
         if (con != null) {
             try {
                 // Close connection
@@ -82,24 +69,18 @@ public class App {
      *
      * @return A list of all engineers and their salaries, or null if there is an error.
      */
-    @RequestMapping("/app/salaries_title")
-    public ArrayList<Employee> getSalariesByRole(String manager) {
+    public ArrayList<Employee> getAllSalariesByRole() {
         try {
             Statement stmt = con.createStatement();
             String strSelect =
-                    "SELECT employees.emp_no, employees.first_name, employees.last_name, " +
-                            "titles.title, salaries.salary, departments.dept_name, dept_manager.emp_no " +
-                            "FROM employees, salaries, titles, departments, dept_emp, dept_manager " +
+                    "SELECT employees.emp_no, employees.first_name, employees.last_name, salaries.salary " +
+                            "FROM employees, salaries, titles " +
                             "WHERE employees.emp_no = salaries.emp_no " +
+                            "AND employees.emp_no = titles.emp_no " +
                             "AND salaries.to_date = '9999-01-01' " +
-                            "AND emp.emp_no = employees.emp_no " +
-                            "AND emp.to_date = '9999-01-01' " +
-                            "AND dept_emp.emp_no = employees.emp_no "+
-                            "AND dept_emp.to_date = '9999-01-01' " +
-                            "AND departments.dept_no = dept_emp.dept_no " +
-                            "AND dept_manager.dept_no = dept_emp.dept_no " +
-                            "AND dept_manager.to_date = '9999-01-01' "+
-                            "AND emp.title = 'Manager' ";
+                            "AND titles.to_date = '9999-01-01' " +
+                            "AND titles.title = 'Engineer' " +
+                            "ORDER BY employees.emp_no ASC";
 
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Employee> employees = new ArrayList<>();
@@ -117,40 +98,6 @@ public class App {
             System.out.println(e.getMessage());
             System.out.println("Failed to get salary details");
             return null;
-        }
-    }
-
-    /**
-     * Outputs to Markdown
-     *
-     * @param employees
-     */
-    public void outputEmployees(ArrayList<Employee> employees, String filename) {
-        // Check employees is not null
-        if (employees == null) {
-            System.out.println("No employees");
-            return;
-        }
-
-        StringBuilder sb = new StringBuilder();
-        // Print header
-        sb.append("| Emp No | First Name | Last Name | Title | Salary | Department | Manager |\r\n");
-        sb.append("| --- | --- | --- | --- | --- | --- | --- |\r\n");
-        // Loop over all employees in the list
-        for (Employee emp : employees) {
-            if (emp == null) continue;
-            sb.append("| " + emp.emp_no + " | " +
-                    emp.first_name + " | " + emp.last_name + " | " +
-                    emp.title + " | " + emp.salary + " | "
-                    + emp.dept + " | " + emp.manager + " |\r\n");
-        }
-        try {
-            new File("./reports/").mkdir();
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
-            writer.write(sb.toString());
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -257,8 +204,7 @@ public class App {
         }
     }
 
-    @RequestMapping("employee")
-    public Employee getEmployee(@RequestParam(value = "id") String ID)
+    public Employee getEmployee(int ID)
     {
         try
         {
@@ -315,14 +261,22 @@ public class App {
      */
     public static void main(String[] args) {
         // Create new Application and connect to database
-        App app = new App();
+        App a = new App();
 
         if (args.length < 1) {
-            connect("localhost:3306", 0);
+            a.connect("localhost:33060", 10000);
         } else {
-            connect(args[0], Integer.parseInt(args[1]));
+            a.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        SpringApplication.run(App.class, args);
+        Department dept = a.getDepartment("Development");
+        ArrayList<Employee> employees = a.getSalariesByDepartment(dept);
+
+
+        // Print salary report
+        a.printSalaries(employees);
+
+        // Disconnect from database
+        a.disconnect();
     }
 }
