@@ -103,14 +103,14 @@ jobs:
           files: |
             ./target/*.jar
 
-#      - name: Copy Output
-#        run: docker container cp sem_employees_app_1:/tmp/reports ./reports
-#
-#      - name: Deploy Reports to GitHub Pages
-#        uses: JamesIves/github-pages-deploy-action@v4.2.5
-#        with:
-#          branch: reports
-#          folder: reports
+      - name: Copy Output
+        run: docker container cp sem_employees_app_1:/tmp/reports ./reports
+
+      - name: Deploy Reports to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: reports
+          folder: reports
 
 
           
