@@ -77,19 +77,19 @@ public class App {
         try {
             Statement stmt = con.createStatement();
             String strSelect =
-                    "SELECT employees.emp_no, employees.first_name, employees.last_name," +
-                            "titles.title, salaries.salary, departments.dept_name, dept_manager.emp_no" +
-                            "FROM employees, salaries, titles, departments, dept_emp, dept_manager" +
-                            "WHERE employees.emp_no = salaries.emp_no" +
-                            "  AND salaries.to_date = '9999-01-01'" +
-                            "  AND titles.emp_no = employees.emp_no" +
-                            "  AND titles.to_date = '9999-01-01'" +
-                            "  AND dept_emp.emp_no = employees.emp_no" +
-                            "  AND dept_emp.to_date = '9999-01-01'" +
-                            "  AND departments.dept_no = dept_emp.dept_no" +
-                            "  AND dept_manager.dept_no = dept_emp.dept_no" +
-                            "  AND dept_manager.to_date = '9999-01-01'" +
-                            "  AND titles.title = 'Manager'";
+                    "SELECT employees.emp_no, employees.first_name, employees.last_name, " +
+                            "titles.title, salaries.salary, departments.dept_name, dept_manager.emp_no " +
+                            "FROM employees, salaries, titles, departments, dept_emp, dept_manager " +
+                            "WHERE employees.emp_no = salaries.emp_no " +
+                            "AND salaries.to_date = '9999-01-01' " +
+                            "AND titles.emp_no = employees.emp_no " +
+                            "AND titles.to_date = '9999-01-01' " +
+                            "AND dept_emp.emp_no = employees.emp_no " +
+                            "AND dept_emp.to_date = '9999-01-01' " +
+                            "AND departments.dept_no = dept_emp.dept_no " +
+                            "AND dept_manager.dept_no = dept_emp.dept_no " +
+                            "AND dept_manager.to_date = '9999-01-01' " +
+                            "AND titles.title = 'Manager';";
 
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Employee> employees = new ArrayList<>();
