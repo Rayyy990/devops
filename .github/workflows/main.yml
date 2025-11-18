@@ -103,15 +103,7 @@ jobs:
           files: |
             ./target/*.jar
 
-      - name: Copy Output
-        run: |
-          echo "Listing containers..."
-          docker ps -a
 
-          CONTAINER=$(docker ps --format "{{.Names}}" | grep app)
-          echo "Detected container: $CONTAINER"
-
-          docker cp $CONTAINER:/tmp/reports ./reports
       
 
 
