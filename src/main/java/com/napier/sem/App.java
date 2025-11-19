@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 public class App {
 
@@ -13,7 +15,6 @@ public class App {
      * Connection to MySQL database.
      */
     private Connection con = null;
-
     /**
      * Connect to the MySQL database.
      */
@@ -73,7 +74,7 @@ public class App {
      *
      * @return A list of all engineers and their salaries, or null if there is an error.
      */
-    public ArrayList<Employee> getSalariesByRole(String manager) {
+    public List<Employee> getSalariesByRole(String manager) {
         try {
             Statement stmt = con.createStatement();
             String strSelect =
@@ -119,7 +120,7 @@ public class App {
      *
      * @param employees
      */
-    public void outputEmployees(ArrayList<Employee> employees, String filename) {
+    public void outputEmployees(List<Employee> employees, String filename) {
         // Check employees is not null
         if (employees == null) {
             System.out.println("No employees");
@@ -185,7 +186,7 @@ public class App {
      * @param dept The Department object (must contain a valid dept_no).
      * @return A list of Employee objects in the department.
      */
-    public ArrayList<Employee> getSalariesByDepartment(Department dept) {
+    public List<Employee> getSalariesByDepartment(Department dept) {
         try {
             Statement stmt = con.createStatement();
             String strSelect = String.format(
@@ -225,7 +226,7 @@ public class App {
      *
      * @param employees The list of employees to print.
      */
-    public void printSalaries(ArrayList<Employee> employees)
+    public void printSalaries(List<Employee> employees)
     {
         // Check employees is not null
         if (employees == null)
@@ -312,7 +313,7 @@ public class App {
             app.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        ArrayList<Employee> employees = app.getSalariesByRole("Manager");
+        List<Employee> employees = app.getSalariesByRole("Manager");
         app.outputEmployees(employees, "ManagerSalaries.md");
 
         // Disconnect from database
