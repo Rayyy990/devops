@@ -103,7 +103,7 @@ jobs:
 
 
       - name: Copy Output
-        run: docker container cp devops_app_1:/tmp/reports ./reports
+        run: docker container cp devops-app-1:/tmp/reports ./reports
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
