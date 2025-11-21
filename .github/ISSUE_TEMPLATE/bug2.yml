@@ -1,10 +1,9 @@
-name: Bug Report2
+name: Bug Report 2
 description: File a bug report for the SET08803-Group5 project.
 title: "[Bug]: "
 labels: ["bug", "triage"]
 assignees:
   - maythiricho
-type: bug
 body:
   - type: markdown
     attributes:
